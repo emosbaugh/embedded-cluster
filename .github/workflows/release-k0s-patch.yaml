@@ -17,7 +17,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          repository: github.com/replicatedhq/k0s
+          repository: replicatedhq/k0s
           ref: refs/tags/${{ github.event.inputs.tag }}
           persist-credentials: false
 
