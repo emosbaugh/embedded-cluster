@@ -11,6 +11,7 @@ jobs:
   build-and-release:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         arch: [amd64, arm64]
     steps:
@@ -29,8 +30,10 @@ jobs:
 
       - name: Build k0s
         env:
-          GOARCH: ${{ matrix.arch }}
+          TARGET_ARCH: ${{ matrix.arch }}
         run: |
+          make bindata
+          make --touch codegen
           make build
 
       - name: Upload build
