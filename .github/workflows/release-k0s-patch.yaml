@@ -36,6 +36,12 @@ jobs:
           make --touch codegen
           make build
 
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: k0s-${{ github.event.inputs.tag }}-${{ matrix.arch }}
+          path: k0s
+
       - name: Upload build
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.STAGING_EMBEDDED_CLUSTER_UPLOAD_IAM_KEY_ID }}
